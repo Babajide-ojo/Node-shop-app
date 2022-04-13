@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 require('mongoose-type-email');
 
-const CustomerSchema = new Schema({
+const AdminSchema = new Schema({
     first_name: {
         type: String
     },
@@ -15,9 +15,10 @@ const CustomerSchema = new Schema({
     password: {
         type: String
     },
-    phone_number: {
-        type: String
-    }
+    date: {
+        type: Date,
+        default: Date.now
+      }
 });
 
-module.exports = Customer = mongoose.model('customer', CustomerSchema);
+module.exports = Admin = mongoose.model('admin', AdminSchema);

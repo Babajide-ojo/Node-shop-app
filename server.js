@@ -1,29 +1,44 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+const express = require('express')
+const mongoose = require('mongoose')
+const cors = require('cors')
 require('dotenv').config()
 
-const customers = require('./routes/customerRoute');
-const sellers = require('./routes/sellerRoute')
+const course = require('./routes/courseRoute')
+const admin = require('./routes/adminRoute')
+const auth = require('./routes/authRoute')
 
-const app = express();
-app.use(cors());
+const app = express()
 app.use(express.json())
-const db = process.env.mongoURI;
+const db = process.env.mongoURI
 //console.log(db);
 //connect to Mongodb
 
+const whitelist = ['http://localhost:3000']
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+
+  credentials: true,
+}
+
+app.use(cors(corsOptions))
+
 mongoose
-    .connect(db)
-    .then(() => console.log('MongoDB Connected...'))
-    .catch((err) => console.log(err));
+  .connect(db)
+  .then(() => console.log('MongoDB Connected...'))
+  .catch((err) => console.log(err))
 
+//use route
 
- //use route
+app.use('/course', course)
+app.use('/admin', admin)
+app.use('/auth', auth)
+const port = process.env.PORT
 
-app.use('/customer' , customers)
-app.use('/seller', sellers)
-
-const port = process.env.PORT 
-
-app.listen(port, () => console.log(`server is running port ${port}`));
+app.listen(port, () => console.log(`server is running port ${port}`))

@@ -1,11 +1,17 @@
+const express = require('express')
+const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const auth = require('../middleware/authCustomer')
+const auth = require('../middleware/authadmin')
+const cloudinary = require('cloudinary').v2
+const Admin = require('../models/admin')
 
-const Customer = require('../models/customer')
 
-exports.createCustomer = (req, res) => {
-  const { first_name, last_name, email, password, phone_number } = req.body
+
+
+exports.createAdmin = (req, res) => {
+
+  let { first_name, last_name, email, password } = req.body
 
   //req body validation
   if (!first_name) {
@@ -20,28 +26,28 @@ exports.createCustomer = (req, res) => {
   if (!password) {
     return res.status(400).json({ msg: 'Please enter your password' })
   }
+ 
+ 
 
-  //check for existing customer
-  Customer.findOne({ email }).then((customer) => {
-    if (customer)
-      return res.status(400).json({ msg: 'customer already exists' })
+  //check for existing admin
+  Admin.findOne({ email }).then((admin) => {
+    if (admin) return res.status(400).json({ msg: 'Admin already exists' })
 
-    const newCustomer = new Customer({
+    const newAdmin = new Admin({
       first_name,
       last_name,
-      phone_number,
       email,
-      password,
+      password
     })
 
     //Create salt & hash
     bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newCustomer.password, salt, (err, hash) => {
+      bcrypt.hash(newAdmin.password, salt, (err, hash) => {
         if (err) throw err
-        newCustomer.password = hash
-        newCustomer.save().then((customer) => {
+        newAdmin.password = hash
+        newAdmin.save().then((admin) => {
           jwt.sign(
-            { id: customer.id },
+            { id: admin.id },
             process.env.jwtSecret,
             { expiresIn: 3600 },
             (err, token) => {
@@ -49,10 +55,8 @@ exports.createCustomer = (req, res) => {
 
               res.json({
                 token: token,
-                customer: {
-                  id: customer.id,
-                  name: customer.name,
-                  email: customer.email,
+                Admin: {
+                  admin
                 },
               })
             },
@@ -61,5 +65,8 @@ exports.createCustomer = (req, res) => {
       })
     })
   })
-};
+}
 
+exports.getAllAdmin = (req, res) => {
+  Admin.find().then((items) => res.json({ items }))
+}

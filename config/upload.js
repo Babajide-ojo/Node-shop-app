@@ -14,8 +14,9 @@ cloudinary.config({
     cloudinary: cloudinary,
     params: {
       folder: 'node_shop',
-      format: async (req, file) => 'png', // supports promises as well
-      public_id: (req, file) => 'computed-filename-using-request',
+      resource_type: "auto", 
+      // format: async (req, file) => 'png, mp4', // supports promises as well
+      public_id: (req, file) => file.filename,
     },
   });
   const parser = multer({storage});
