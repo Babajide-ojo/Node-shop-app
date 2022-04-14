@@ -34,6 +34,7 @@ mongoose
   .then(() => console.log('MongoDB Connected...'))
   .catch((err) => console.log(err))
 
+mongoose.set('debug' , true)
 //use route
 
 app.use('/course', course)
