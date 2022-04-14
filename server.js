@@ -43,6 +43,6 @@ app.get("/", (req, res) => {
 app.use('/course', course)
 app.use('/admin', admin)
 app.use('/auth', auth)
-const port = process.env.PORT
+const port = process.env.PORT || 8000
 
 app.listen(port, () => console.log(`server is running port ${port}`))
