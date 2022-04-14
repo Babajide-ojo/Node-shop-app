@@ -36,6 +36,9 @@ mongoose
 
 mongoose.set('debug' , true)
 //use route
+app.get("/", (req, res) => {
+  res.status(200).send("DPR-connect working fine");
+});
 
 app.use('/course', course)
 app.use('/admin', admin)
