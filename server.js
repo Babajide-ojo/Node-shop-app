@@ -37,7 +37,7 @@ mongoose
 mongoose.set('debug' , true)
 //use route
 app.get("/", (req, res) => {
-  res.status(200).send("DPR-connect working fine");
+  res.status(200).send("Kim-learn-Api working fine");
 });
 
 app.use('/course', course)
