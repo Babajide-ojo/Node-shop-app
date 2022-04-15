@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const auth = require('../middleware/authadmin')
+const auth = require('../middleware/authAdmin')
 const cloudinary = require('cloudinary').v2
 const Admin = require('../models/admin')
 
