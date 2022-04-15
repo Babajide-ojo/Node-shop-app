@@ -13,7 +13,7 @@ const db = process.env.mongoURI
 //console.log(db);
 //connect to Mongodb
 
-const whitelist = ['https://kimlearn.herokuapp.com/']
+const whitelist = ['https://kimlearn.netlify.app/']
 
 const corsOptions = {
   origin: function (origin, callback) {
