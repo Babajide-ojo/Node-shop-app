@@ -13,7 +13,7 @@ const db = process.env.mongoURI
 //console.log(db);
 //connect to Mongodb
 
-const whitelist = ['https://kimlearn.netlify.app/']
+const whitelist = ['https://kimlearn.herokuapp.com/']
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -37,7 +37,7 @@ mongoose
 mongoose.set('debug' , true)
 //use route
 app.get("/", (req, res) => {
-  res.status(200).send("Kim-learn-Api working fine");
+  res.status(200).send("connected well");
 });
 
 app.use('/course', course)
