@@ -13,7 +13,7 @@ const db = process.env.mongoURI
 //console.log(db);
 //connect to Mongodb
 
-const whitelist = ['http://localhost:3000']
+const whitelist = ['https://kimlearn.herokuapp.com/']
 
 const corsOptions = {
   origin: function (origin, callback) {
