@@ -10,6 +10,7 @@ const auth = require('../middleware/authAdmin')
 
 router.post('/create', parser.single('image'), adminController.createAdmin);
 router.get('/getAllAdmin', adminController.getAllAdmin)
+router.get('/confirm/:confirmationCode', adminController.verifyUser)
 
 
 module.exports = router;
