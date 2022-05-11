@@ -178,3 +178,132 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
 </body>`,
   }).catch(err => console.log(err));
 };
+
+
+
+//it
+
+// (function () {
+//     var userCredentials = formelo().getCurrentUserProfile();
+//     var token = userCredentials.bearer_token;
+//     var email = userCredentials.email_address;
+//     var testEmail = "supervisorhq@dpr.gov.ng";
+//     var formtype = "IT";
+//     //alert(JSON.stringify(userCredentials.username));
+//     var toastMessage = "Fetching data...";
+  
+//     if (email === "juliet.nkwor@brandonetech.com") {
+//       email = "supervisorhq@dpr.gov.ng";
+//     }
+  
+//     try {
+
+      
+//       var url = 
+      
+//        "https://dprconnect.pmglobaltechnology.com/api/cng-compression-station/inspections?email=" +
+//         email +
+//         "&formtype=" +
+//         formtype +
+//         "&test=true" +
+//         "&token=eyJJc3N1ZXIiOiJBRERPTlNBVVRPR0FTVVRJTElTQVRJT04ifQ"; 
+//       formelo().showSpinner(toastMessage);
+//       fetch(url, {
+//         headers: {
+//           //Authorization: 'Bearer ' + token,
+//           "Content-Type": "application/json"
+//         }
+//       })
+//         .then(function (response) {
+//           if (response.status >= 200 && response.status < 300) {
+//             return response.json();
+//           } else {
+//             var error = new Error(response.statusText);
+//             error.response = response;
+//             throw error;
+//           }
+//         })
+//         .then(function (res) {
+ 
+//           var newData = [];
+//           res.data.map(function (item) {
+//             newData.push({
+//               title: item.company_name,
+//               description: item.facility_address,
+//               extra: item
+//             });
+//           });
+//           formelo().hideSpinner();
+        
+        
+//           var options = {
+//             name: "Showing 100 results"
+//           };
+//           formelo()
+//             .selectItem(newData, options)
+//             .then(function (item) {
+//               var customer = formelo().flattenObject(item.extra);
+//               for (var key in customer) {
+//                 if (customer[key]) {
+//                   formelo().setVal(key, customer[key]);
+//                 }
+//                    if (
+//                         key == "license_type" &&
+//                           customer[key] == "INTEGRITY TEST (COMPRESSION)"
+//                             ) {
+//                                 formelo().setVal(key, "IT");
+//                             }
+//               }
+  
+//               var unique_key = "application_id";
+//               var unique_value = customer[unique_key];
+//               var collection_id = "ml3yv1jx";
+//               var correlation_field_key = "correlation_id";
+  
+//               var docs_url =
+//                 "https://smartinspector.dpr.gov.ng/api/documents?collection.id=" +
+//                 collection_id +
+//                 "&data.application_id=" +
+//                 unique_value;
+  
+//               try {
+//                 fetch(docs_url, {
+//                   headers: {
+//                     Authorization: "Bearer " + token,
+//                     "Content-Type": "application/json"
+//                   }
+//                 })
+//                   .then(function (response) {
+//                     if (response.status >= 200 && response.status < 300) {
+//                       return response.json();
+//                     } else {
+//                       var error = new Error(response.statusText);
+//                       error.response = response;
+//                       throw error;
+//                     }
+//                   })
+//                   .then(function (res) {
+//                     var records = res;
+//                     var correlation_value =
+//                       /*unique_value + "-" +*/ records.length;
+//                     /*if (correlation_value > 0) {
+//           formelo.setVal(unique_key, unique_value + correlation_value);
+//       }*/
+//                     formelo().setVal(correlation_field_key, correlation_value);
+//                   });
+//               } catch (err) {
+//                 formelo().toast(e.message, "long");
+//               }
+//               formelo().hideSpinner();
+//             });
+//         })
+//         .catch(function (e) {
+//           formelo().toast("Server Error. Please try again", "long");
+//           //alert(JSON.stringify(e));
+//           formelo().hideSpinner();
+//         });
+//     } catch (e) {
+//       formelo().toast(e.message, "long");
+//       formelo().hideSpinner();
+//     }
+//   })();
