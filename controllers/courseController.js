@@ -45,3 +45,14 @@ exports.createCourse = (req, res) => {
     })
 };
 
+exports.getAllCourses = (req, res) => {
+  Course.find().then((course) => res.json({ course }))
+}
+
+exports.getSingleCourse = ('/:id', (req, res) =>{
+  var id = req.query.id;
+  console.log(req.query)
+ 
+
+  Course.findById(id).then((course) => res.json({course})).catch(err => console.log(err))
+})

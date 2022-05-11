@@ -13,7 +13,7 @@ const db = process.env.mongoURI
 //console.log(db);
 //connect to Mongodb
 
-const whitelist = ['http://localhost:3000']
+const whitelist = ['http://localhost:3000', 'https://kimlearn.netlify.app/']
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -27,18 +27,23 @@ const corsOptions = {
   credentials: true,
 }
 
-app.use(cors(corsOptions))
+app.use(cors());
+
 
 mongoose
   .connect(db)
   .then(() => console.log('MongoDB Connected...'))
   .catch((err) => console.log(err))
 
+// mongoose.set('debug' , true)
 //use route
+app.get("/", (req, res) => {
+  res.status(200).send("connected well");
+});
 
 app.use('/course', course)
 app.use('/admin', admin)
 app.use('/auth', auth)
-const port = process.env.PORT
+const port = process.env.PORT || 8000
 
 app.listen(port, () => console.log(`server is running port ${port}`))
