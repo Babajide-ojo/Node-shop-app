@@ -6,6 +6,7 @@ require('dotenv').config()
 const course = require('./routes/courseRoute')
 const admin = require('./routes/adminRoute')
 const auth = require('./routes/authRoute')
+const user = require('./routes/userRoute')
 
 const app = express()
 app.use(express.json())
@@ -44,6 +45,7 @@ app.get("/", (req, res) => {
 app.use('/course', course)
 app.use('/admin', admin)
 app.use('/auth', auth)
+app.use('/user', user)
 const port = process.env.PORT || 8000
 
 app.listen(port, () => console.log(`server is running port ${port}`))
