@@ -18,7 +18,15 @@ const AdminSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
-      }
+      },
+      status: {
+        type: String, 
+        enum: ['Pending', 'Active'],
+        default: 'Pending'
+      },
+      confirmationCode: { 
+        type: String, 
+        unique: true }
 });
 
 module.exports = Admin = mongoose.model('admin', AdminSchema);
