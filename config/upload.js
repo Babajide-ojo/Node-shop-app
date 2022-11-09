@@ -20,10 +20,4 @@ cloudinary.config({
     },
   });
   const parser = multer({storage});
-  
-  // const uploadFile = async(image) => {
-  //   const response = await cloudinary.uploader.upload(image);
-  //     return res.secure_url
-  // }
-  
   module.exports = parser;

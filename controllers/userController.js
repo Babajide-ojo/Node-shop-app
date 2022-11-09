@@ -1,15 +1,12 @@
-const express = require('express')
-const router = express.Router()
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const auth = require('../middleware/authuser')
+const express = require('express');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const cloudinary = require('cloudinary').v2
-const User = require('../models/user')
-//const nodemailer = require('nodemailer')
+const User = require('../models/user');
 const nodemail = require('../config/nodemailer')
 
 exports.createUser = (req, res) => {
-  let { first_name, last_name, email, password } = req.body
+  let { first_name, last_name, email, password, confirm_password } = req.body
 
   //req body validation
   if (!first_name) {
@@ -24,10 +21,13 @@ exports.createUser = (req, res) => {
   if (!password) {
     return res.status(400).json({ msg: 'Please enter your password' })
   }
+  if (!confirm_password) {
+    return res.status(400).json({ msg: 'Please enter your password' })
+  }
 
-  //check for existing user
+  if(password === confirm_password){
   User.findOne({ email }).then((user) => {
-    if (user) return res.status(400).json({ msg: 'user already exists' })
+    if (user) return res.json({ msg: 'user already exists' })
 
 
     const characters =
@@ -58,6 +58,7 @@ exports.createUser = (req, res) => {
               if (err) throw err
               res.json({
                 token: token,
+                msg: "Account created successfully",
                 user: {
                   user,
                 },
@@ -73,6 +74,10 @@ exports.createUser = (req, res) => {
       })
     })
   })
+  } else {
+    return res.status(400).json({ msg: 'Please match your password' })
+  }
+
 }
 
 exports.getAllUser = (req, res) => {
@@ -81,7 +86,7 @@ exports.getAllUser = (req, res) => {
 
 exports.verifyUser = (req, res, next) => {
   console.log(req.params.confirmationCode);
-  user.findOne({
+  User.findOne({
     confirmationCode: req.params.confirmationCode,
   })
     .then((user) => {
@@ -90,7 +95,6 @@ exports.verifyUser = (req, res, next) => {
       }
 
       user.status = "Active";
-      console.log(user)
       user.save((err) => {
         if (err) {
           res.status(500).send({ message: err });
