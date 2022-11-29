@@ -20,6 +20,10 @@ const redis = require('redis');
 const connectRedis = require('connect-redis');
 const db = process.env.mongoURI;
 
+//v3 routes
+const vAdmin = require("./v3/routes/adminRoute");
+
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -41,6 +45,7 @@ app.use("/education", education);
 app.use("/experience", experience);
 app.use("/reset-password", resetPassword);
 app.use("/company", company);
+app.use("/v3/admin", vAdmin);
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => console.log(`server is running port ${port}`));
