@@ -22,7 +22,7 @@ const db = process.env.mongoURI;
 
 //v3 routes
 const vAdmin = require("./v3/routes/adminRoute");
-
+const vProduct = require("./v3/routes/productRoute");
 
 const app = express();
 app.use(express.json());
@@ -46,6 +46,9 @@ app.use("/experience", experience);
 app.use("/reset-password", resetPassword);
 app.use("/company", company);
 app.use("/v3/admin", vAdmin);
+app.use("/v3/product", vProduct);
+
+
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => console.log(`server is running port ${port}`));
