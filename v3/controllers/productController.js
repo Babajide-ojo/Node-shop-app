@@ -53,7 +53,7 @@ exports.addProduct = (req, res) => {
 
   newProduct.save().then((product) => {
     if (product){
-      //logger.info(`Product added successfully ${product}`)
+      console.log(`Product added successfully ${product}`)
       return res.status(200).json({ product: product });
     } 
   });
