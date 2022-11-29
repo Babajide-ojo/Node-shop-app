@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/authAdmin");
 
+
 const Job = require("../models/job");
 
 exports.createJob = (req, res) => {
