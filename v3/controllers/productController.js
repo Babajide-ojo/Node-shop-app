@@ -1,5 +1,5 @@
 const Product = require("../../v3/models/product");
-const logger = require("./../logger");
+//const logger = require("./../logger");
 
 exports.addProduct = (req, res) => {
   let { name, category, size, description, manufacturer } = req.body;
@@ -53,7 +53,7 @@ exports.addProduct = (req, res) => {
 
   newProduct.save().then((product) => {
     if (product){
-      logger.info(`Product added successfully ${product}`)
+      //logger.info(`Product added successfully ${product}`)
       return res.status(200).json({ product: product });
     } 
   });
