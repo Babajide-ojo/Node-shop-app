@@ -33,8 +33,8 @@ exports.createUser = (req, res) => {
     const characters =
       '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     let code = ''
-    for (let i = 0; i < 25; i++) {
-      code += characters[Math.floor(Math.random() * characters.length)]
+    for (let i = 0; i < 5; i++) {
+      code += characters[Math.floor(Math.random() * 6)]
     }
     const newUser = new User({
       first_name,

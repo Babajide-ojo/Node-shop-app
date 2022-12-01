@@ -23,6 +23,7 @@ const db = process.env.mongoURI;
 //v3 routes
 const vAdmin = require("./v3/routes/adminRoute");
 const vProduct = require("./v3/routes/productRoute");
+const vOrder =require("./v3/routes/orderRoute")
 
 const app = express();
 app.use(express.json());
@@ -47,6 +48,7 @@ app.use("/reset-password", resetPassword);
 app.use("/company", company);
 app.use("/v3/admin", vAdmin);
 app.use("/v3/product", vProduct);
+app.use("/v3/order", vOrder);
 
 
 const port = process.env.PORT || 8000;

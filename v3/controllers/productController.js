@@ -2,12 +2,11 @@ const Product = require("../../v3/models/product");
 //const logger = require("./../logger");
 
 exports.addProduct = (req, res) => {
-  let { name, category, size, description, manufacturer } = req.body;
+  let { name, category, size, description, manufacturer, price } = req.body;
 
   let image_url = req.files.image_url[0].path;
   let image_url_one = req.files.image_url_one[0].path;
   let image_url_two = req.files.image_url_two[0].path;
-
 
   if (!name) {
     return res.status(400).json({ msg: "Please enter a product name" });
@@ -20,6 +19,9 @@ exports.addProduct = (req, res) => {
   }
   if (!description) {
     return res.status(400).json({ msg: "Please enter a product description" });
+  }
+  if (!price) {
+    return res.status(400).json({ msg: "Please enter a product price" });
   }
   if (!image_url) {
     return res
@@ -40,6 +42,12 @@ exports.addProduct = (req, res) => {
     return res.status(400).json({ msg: "Please enter a manufacturer" });
   }
 
+  const characters =
+    "0123456789";
+  let code = "";
+  for (let i = 0; i < 7; i++) {
+    code += characters[Math.floor(Math.random() * characters.length)];
+  }
   const newProduct = new Product({
     name,
     category,
@@ -49,12 +57,27 @@ exports.addProduct = (req, res) => {
     image_url_one,
     image_url_two,
     manufacturer,
+    price,
+    product_id: code,
   });
 
   newProduct.save().then((product) => {
-    if (product){
-      console.log(`Product added successfully ${product}`)
-      return res.status(200).json({ product: product });
-    } 
+    if (product) {
+      console.log(`Product added successfully ${product}`);
+      return res.status(200).json(product);
+    }
   });
 };
+
+exports.getProducts = (req, res) => {
+  Product.find().sort({date: -1}).then((product) => res.json(product));
+};
+
+exports.getProduct =
+  ("/:id",
+  (req, res) => {
+    var id = req.query.id;
+    Product.findById(id)
+      .then((product) => res.json({ product }))
+      .catch((err) => console.log(err));
+  });

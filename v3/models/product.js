@@ -14,6 +14,9 @@ const vProductSchema = new Schema({
   description: {
     type: String,
   },
+  price: {
+    type: Number,
+  },
   image_url: {
     type: String,
   },
@@ -25,6 +28,9 @@ const vProductSchema = new Schema({
   },
   manufacturer: {
     type: String,
+  },
+  product_id: {
+    type: Number,
   },
   date: {
     type: Date,
