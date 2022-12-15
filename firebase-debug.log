@@ -1,0 +1,39 @@
+[debug] [2022-12-06T14:00:23.921Z] ----------------------------------------------------------------------
+[debug] [2022-12-06T14:00:23.923Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init hosting
+[debug] [2022-12-06T14:00:23.923Z] CLI Version:   11.16.1
+[debug] [2022-12-06T14:00:23.923Z] Platform:      darwin
+[debug] [2022-12-06T14:00:23.923Z] Node Version:  v16.16.0
+[debug] [2022-12-06T14:00:23.924Z] Time:          Tue Dec 06 2022 15:00:23 GMT+0100 (West Africa Standard Time)
+[debug] [2022-12-06T14:00:23.925Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-12-06T14:00:23.931Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-12-06T14:00:23.931Z] > authorizing via signed-in user (ojobabajide629@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/babajideojo/Documents/Jide/Node-shop-app
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2022-12-06T14:00:58.042Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2022-12-06T14:00:58.042Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"color-one","name":"y"}
+[debug] [2022-12-06T14:01:00.889Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2022-12-06T14:01:00.889Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"field [display_name] has issue [project display name must be at least 4 characters]","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"display_name","description":"project display name must be at least 4 characters"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2022-12-06T14:01:02.596Z] FirebaseError: HTTP Error: 400, field [display_name] has issue [project display name must be at least 4 characters]
+    at responseToError (/usr/local/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/usr/local/lib/node_modules/firebase-tools/lib/apiv2.js:288:77)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.

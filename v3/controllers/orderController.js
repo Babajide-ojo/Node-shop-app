@@ -3,16 +3,14 @@ const Order = require("../../v3/models/order");
 
 exports.addOrder = (req, res) => {
   let {
-   
     total_price,
     payment_method,
     delivery_address,
     phone_number,
     email,
     items,
-    status
+    status,
   } = req.body;
-
 
   if (!total_price) {
     return res.status(400).json({ msg: "Please enter the total price" });
@@ -49,26 +47,30 @@ exports.addOrder = (req, res) => {
     phone_number,
     email,
     items,
-    status
+    status,
   });
-console.log(newOrder);
   newOrder.save().then((order) => {
     if (order) {
       console.log(`Order added successfully ${order}`);
-      return res.status(200).json(order);
+      return res.status(200).json({ msg: "Order successfully added", order });
     }
   });
 };
 
-exports.getProducts = (req, res) => {
-  Product.find().then((product) => res.json({ product }));
-};
+exports.getOrderByEmail =
+  ("/:email",
+  (req, res) => {
+    var email = req.query.email;
+    Order.find({ email }).sort({date: -1})
+      .then((order) => res.json({ order }))
+      .catch((err) => console.log(err));
+  });
 
-exports.getProduct =
+  exports.getOrderById =
   ("/:id",
   (req, res) => {
-    var id = req.query.id;
-    Product.findById(id)
-      .then((product) => res.json({ product }))
+    var _id = req.query.id;
+    Order.find({ _id })
+      .then((order) => res.json({ order }))
       .catch((err) => console.log(err));
   });
