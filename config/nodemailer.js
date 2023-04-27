@@ -1,6 +1,4 @@
 const nodemailer = require("nodemailer");
-//const config = require("../config/auth.config");
-
 
 
 const transport = nodemailer.createTransport({

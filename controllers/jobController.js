@@ -2,14 +2,25 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/authAdmin");
 
-
 const Job = require("../models/job");
 
 exports.createJob = (req, res) => {
-  let { company_name, title, description, category , companyId} = req.body;
-  let image_url = req.files.image_url[0].path;
+  let {
+    userId,
+    title,
+    description,
+    category,
+    company_overview,
+    image_url,
+    type,
+    sector,
+    overview,
+    staff_strength,
+    expiryDate,
+    company_name,
+  } = req.body;
 
-  if (!companyId) {
+  if (!userId) {
     return res.status(400).json({ msg: "Please enter a company Id" });
   }
   if (!title) {
@@ -26,12 +37,18 @@ exports.createJob = (req, res) => {
   }
 
   const newJob = new Job({
-    companyId,
-    company_name,
+    userId,
     title,
     description,
     category,
+    company_overview,
     image_url,
+    type,
+    sector,
+    overview,
+    staff_strength,
+    expiryDate,
+    company_name,
   });
 
   newJob.save().then((job) => {

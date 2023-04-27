@@ -3,14 +3,20 @@ const Schema = mongoose.Schema;
 const moment = require('moment');
 
 const JobSchema = new Schema({
-  companyId: {
+userId: {
     type: Schema.Types.ObjectId,
-    ref: "company",
+    ref: "user",
   },
   company_name: {
     type: String,
   },
+  company_overview: {
+    type: String,
+  },
   title: {
+    type: String,
+  },
+  company_overview: {
     type: String,
   },
   image_url: {
@@ -22,7 +28,16 @@ const JobSchema = new Schema({
   category: {
     type: String,
   },
-  date: {
+  type: {
+    type: String,
+  },
+  sector: {
+    type: String,
+  },
+  staff_strength: {
+    type: String,
+  },
+  expiryDate: {
     type: String,
     default: moment().format("MMM Do YYYY"),
   },
