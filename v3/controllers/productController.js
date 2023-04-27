@@ -155,75 +155,76 @@ exports.testProduct = (req, res) => {
   const data = [
     {
       id: 1,
-      name: "Product 1",
-      description: "This is the first product",
-      price: 9.99,
-      quantity: 10,
+      name: "Vitamin C Supplements",
+      description: "Provides immune support and promotes healthy skin and bones.",
+      price: 15.99,
+      quantity: 50
     },
     {
       id: 2,
-      name: "Product 2",
-      description: "This is the second product",
-      price: 19.99,
-      quantity: 20,
+      name: "Omega-3 Fish Oil",
+      description: "Supports heart health and brain function.",
+      price: 25.49,
+      quantity: 90
     },
     {
       id: 3,
-      name: "Product 3",
-      description: "This is the third product",
-      price: 29.99,
-      quantity: 30,
+      name: "Probiotic Supplements",
+      description: "Helps maintain a healthy gut and immune system.",
+      price: 12.99,
+      quantity: 30
     },
     {
       id: 4,
-      name: "Product 4",
-      description: "This is the fourth product",
-      price: 39.99,
-      quantity: 40,
+      name: "Collagen Peptides Powder",
+      description: "Promotes healthy skin, hair, and nails.",
+      price: 29.99,
+      quantity: 20
     },
     {
       id: 5,
-      name: "Product 5",
-      description: "This is the fifth product",
-      price: 49.99,
-      quantity: 50,
+      name: "Multivitamin Supplements",
+      description: "Provides essential nutrients for overall health and well-being.",
+      price: 18.99,
+      quantity: 60
     },
     {
       id: 6,
-      name: "Product 6",
-      description: "This is the sixth product",
-      price: 59.99,
-      quantity: 60,
+      name: "Protein Bars",
+      description: "Convenient and nutritious snacks for on-the-go.",
+      price: 2.49,
+      quantity: 24
     },
     {
       id: 7,
-      name: "Product 7",
-      description: "This is the seventh product",
-      price: 69.99,
-      quantity: 70,
+      name: "Green Tea Extract",
+      description: "Helps promote weight loss and improve brain function.",
+      price: 9.99,
+      quantity: 120
     },
     {
       id: 8,
-      name: "Product 8",
-      description: "This is the eighth product",
-      price: 79.99,
-      quantity: 80,
+      name: "Magnesium Supplements",
+      description: "Helps regulate muscle and nerve function, and maintain bone health.",
+      price: 14.99,
+      quantity: 90
     },
     {
       id: 9,
-      name: "Product 9",
-      description: "This is the ninth product",
-      price: 89.99,
-      quantity: 90,
+      name: "Ginger Supplements",
+      description: "Helps relieve nausea and reduce inflammation.",
+      price: 7.99,
+      quantity: 60
     },
     {
       id: 10,
-      name: "Product 10",
-      description: "This is the tenth product",
-      price: 99.99,
-      quantity: 100,
-    },
-  ];
+      name: "Turmeric Supplements",
+      description: "Helps reduce inflammation and joint pain.",
+      price: 11.99,
+      quantity: 30
+    }
+  ]
+  
 
   return res.json({ data });
 };
